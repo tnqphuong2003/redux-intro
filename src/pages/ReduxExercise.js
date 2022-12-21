@@ -174,6 +174,14 @@ const ProductTwo = (props) => {
 
   // Step 9
   // Repeat step 7 and 8 for this component
+  const dispatch = useDispatch();
+
+  const addProduct = () => {
+    dispatch(addToCart(product));
+  };
+  const removeProduct = () => {
+    dispatch(removeCart(product));
+  };
 
   return (
     <WrapperBox>
@@ -197,10 +205,18 @@ const ProductTwo = (props) => {
         </Grid>
         <Grid item xs={8}>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <Button variant="success" sx={{ width: "5rem" }}>
+            <Button
+              variant="success"
+              sx={{ width: "5rem" }}
+              onClick={addProduct}
+            >
               Add
             </Button>
-            <Button variant="error" sx={{ width: "5rem" }}>
+            <Button
+              variant="error"
+              sx={{ width: "5rem" }}
+              onClick={removeProduct}
+            >
               Remove
             </Button>
           </div>
@@ -215,7 +231,7 @@ const CartProductOne = (props) => {
   // Replace the line below to get data of the first product from state.cart.products
   // Change the price of products in `service/cart/slice.js` to see the effect
   // const product = { price: "...", qty: "..." };
-  const product = useSelector((state) => state.cart.product[0]);
+  const product = useSelector((state) => state.cart.products[0]);
 
   return (
     <WrapperBox>
@@ -249,7 +265,7 @@ const CartProductTwo = (props) => {
   // Replace the line below to get data of the second product from state.cart.products
   // Change the price of products in `service/cart/slice.js` to see the effect
   // const product = { price: "...", qty: "..." };
-  const product = useSelector((state) => state.cart.product[1]);
+  const product = useSelector((state) => state.cart.products[1]);
 
   return (
     <WrapperBox>
