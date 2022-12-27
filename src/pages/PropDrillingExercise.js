@@ -45,7 +45,7 @@ const RootComponent = (props) => {
   const removeProductFromCart = (removeProduct) => {
     let newTotalPrice = cart.totalPrice;
     const newProductList = cart.products.map((product) => {
-      if (product.id === removeProduct.id) {
+      if (product.id === removeProduct.id && product.qty > 0) {
         product.qty -= 1;
         product.price -= removeProduct.price;
         newTotalPrice -= removeProduct.price;
